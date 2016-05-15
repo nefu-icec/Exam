@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="edu.nefu.icec.exam.domain">
+	<class name="Answer" table="answer">
+		<id name="aid" type="string" column="aid">
+			<generator class="uuid"/>
+		</id> 
+		<property name="description" column="description" type="text" not-null="true"/> 
+		<property name="mark" column="mark" type="double" not-null="true"/>  
+		<property name="answerstatement" column="answerstatement" type="int" not-null="true"/>  
+		<many-to-one name="question" class="Question" cascade="save-update" column="qid" not-null="true" lazy="false" />
+	</class>
+</hibernate-mapping>

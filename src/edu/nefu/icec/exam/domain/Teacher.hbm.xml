@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="edu.nefu.icec.exam.domain">
+	<class name="Teacher" table="teacher">
+		<id name="tid" type="string" column="tid">
+			<generator class="uuid"/>
+		</id>
+		<property name="number" column="number" type="string" not-null="true" length="50" unique="true"/>
+		<property name="name" column="name" type="string" not-null="true"/>
+		<property name="password" column="password" type="string" not-null="true"/> 
+   	    <list name="exams" cascade="delete" inverse="true">
+			<key column="tid"  not-null="true"/>
+			<index column="upload" type="java.util.Date"/>
+			<one-to-many class="Exam"></one-to-many>
+		</list> 
+	</class>
+</hibernate-mapping>
